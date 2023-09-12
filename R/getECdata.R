@@ -1,7 +1,7 @@
 #' @title Extract Environment Canada climate data
 #' @name getECdata
 #' @aliases getECdata
-#' @description  The function will extract the corresponding climate data
+#' @description  Extract the corresponding climate data
 #' for the supplied supplied weather station IDs during the
 #' given period.
 #' @author Braeden Klaver
@@ -14,13 +14,13 @@
 #' @importFrom stringi stri_enc_detect
 #' @importFrom stringr str_detect
 #' @importFrom utils setTxtProgressBar
-#' @param year_start starting year for data pull
-#' @param year_end end year for data pull
-#' @param folder folder path to where you want data saved
-#' @param timeframe timeframe of the data to pull
-#' @param verbose include progress bar
-#' @param delete delete files that failed to download or were corrupted
-#' @return dataframe
+#' @param year_start Starting year for data pull
+#' @param year_end End year for data pull
+#' @param folder Folder path to where you want data saved
+#' @param timeframe Timeframe of the data to pull
+#' @param verbose Include progress bar
+#' @param delete Delete files that failed to download or were corrupted
+#' @return Dataframe
 #' @rdname getECdata
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/

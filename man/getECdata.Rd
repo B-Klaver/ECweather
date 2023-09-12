@@ -7,23 +7,23 @@
 getECdata(stations, year_start, year_end, folder, time_frame = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE)
 }
 \arguments{
-\item{year_start}{starting year for data pull}
+\item{year_start}{Starting year for data pull}
 
-\item{year_end}{end year for data pull}
+\item{year_end}{End year for data pull}
 
-\item{folder}{folder path to where you want data saved}
+\item{folder}{Folder path to where you want data saved}
 
-\item{timeframe}{timeframe of the data to pull}
+\item{timeframe}{Timeframe of the data to pull}
 
-\item{verbose}{include progress bar}
+\item{verbose}{Include progress bar}
 
-\item{delete}{delete files that failed to download or were corrupted}
+\item{delete}{Delete files that failed to download or were corrupted}
 }
 \value{
-dataframe
+Dataframe
 }
 \description{
-The function will extract the corresponding climate data
+Extract the corresponding climate data
 for the supplied supplied weather station IDs during the
 given period.
 }

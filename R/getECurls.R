@@ -1,16 +1,16 @@
 #' @title Generate URLs for Environment Canada climate data
 #' @name getECurls
 #' @aliases getECurls
-#' @description  The function will generate the needed URLs
+#' @description  Generate the needed URLs
 #' for the supplied supplied weather station IDs during the
 #' given period.
 #' @author Braeden Klaver
 #' @usage getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
 #' @param id A station ID
-#' @param year_start starting year for data pull
-#' @param year_end end year for data pull
-#' @param timeframe timeframe of the data to pull
-#' @return list
+#' @param year_start Starting year for data pull
+#' @param year_end End year for data pull
+#' @param timeframe Timeframe of the data to pull
+#' @return List
 #' @rdname getECurls
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/

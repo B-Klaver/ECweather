@@ -9,17 +9,17 @@ getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
 \arguments{
 \item{id}{A station ID}
 
-\item{year_start}{starting year for data pull}
+\item{year_start}{Starting year for data pull}
 
-\item{year_end}{end year for data pull}
+\item{year_end}{End year for data pull}
 
-\item{timeframe}{timeframe of the data to pull}
+\item{timeframe}{Timeframe of the data to pull}
 }
 \value{
-list
+List
 }
 \description{
-The function will generate the needed URLs
+Generate the needed URLs
 for the supplied supplied weather station IDs during the
 given period.
 }
