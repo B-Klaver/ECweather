@@ -24,12 +24,14 @@
 #' @param timeframe Timeframe of the data to pull
 #' @param verbose Include progress bar
 #' @param delete Delete files that failed to download or were corrupted
+#' @export getECdata
 #' @return Dataframe
 #' @rdname getECdata
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' @note This function requires the other function available in the package "getECurls"
-#' @examples df <- getECdata(stations = c(52), year_start = 2022, year_end = 2023, folder = getwd(), timeframe = "daily")
+#' @examples df <- getECdata(stations = c(52), year_start = 2022,
+#' year_end = 2023, folder = getwd(), timeframe = "daily")
 
 
 getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE) {
@@ -49,8 +51,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
 
   #GENERATE URLS FOR EACH STATION TO PULL DATA
-  urls <- stations %>%
-    purrr::map(~ {
+  urls <- purrr::map(stations, ~ {
 
               getECurls(.,
                       year_start,
@@ -159,9 +160,11 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
     ## If we read the file successfully, add on the station id
     ecdata <- cbind.data.frame(station_id = rep(sites[i],
                                                 nrow(ecdata)),
-                               ecdata) %>%
-      janitor::clean_names() %>%
-      dplyr::mutate_all(as.character)
+                               ecdata)
+
+    ecdata <- janitor::clean_names(ecdata)
+
+    ecdata <- dplyr::mutate_all(ecdata, as.character)
 
     #add onto the list
     #out$data[[as.character(sites[i])]] <- ecdata

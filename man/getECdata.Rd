@@ -35,7 +35,8 @@ given period.
 This function requires the other function available in the package "getECurls"
 }
 \examples{
-df <- getECdata(stations = c(52), year_start = 2022, year_end = 2023, folder = getwd(), timeframe = "daily")
+df <- getECdata(stations = c(52), year_start = 2022,
+year_end = 2023, folder = getwd(), timeframe = "daily")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html

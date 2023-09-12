@@ -10,6 +10,7 @@
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
 #' @param timeframe Timeframe of the data to pull
+#' @export getECurls
 #' @return List
 #' @rdname getECurls
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
