@@ -14,13 +14,11 @@ Depends: R (>= 4.0.2)
 Imports: 
     data.table,
     dplyr,
-    here,
     janitor,
     purrr,
+    stringi,
     stringr,
     utils
-Published: ?
-Built: R 4.0.5; 2023-09-12
 Language: en-CAN
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

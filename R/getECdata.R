@@ -1,7 +1,32 @@
+#' @title Extract Environment Canada climate data
+#' @name getECdata
+#' @aliases getECdata
+#' @description  The function will extract the corresponding climate data
+#' for the supplied supplied weather station IDs during the
+#' given period.
+#' @author Braeden Klaver
+#' @usage getECdata(stations, year_start, year_end, folder, time_frame = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE)
+#' @importFrom data.table fread
+#' @importFrom dplyr bind_rows
+#' @importFrom janitor clean_names
+#' @importFrom purrr map
+#' @importFrom utils txtProgressBar
+#' @importFrom stringi stri_enc_detect
+#' @importFrom stringr str_detect
+#' @importFrom utils setTxtProgressBar
+#' @param year_start starting year for data pull
+#' @param year_end end year for data pull
+#' @param folder folder path to where you want data saved
+#' @param timeframe timeframe of the data to pull
+#' @param verbose include progress bar
+#' @param delete delete files that failed to download or were corrupted
+#' @return dataframe
+#' @rdname getECdata
+#' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
+#' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
+#' @note This function requires the other function available in the package "getECurls"
+#' @examples test <- getECdata(stations = c(52), year_start = 2022, year_end = year(Sys.Date()), folder = "C:/Users/User/Documents/Projects", timeframe = "daily")
 
-###
-### PULL THE DATA FROM THE URLS ####
-###
 
 getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE) {
 
