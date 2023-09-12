@@ -21,7 +21,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
   #GENERATE URLS FOR EACH STATION TO PULL DATA
   urls <- stations %>%
-    purr::map(~ {
+    purrr::map(~ {
 
               getECurls(.,
                       year_start,
@@ -73,7 +73,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
       ecdata <- readLines(curfile, warn = FALSE) # read all lines in file
 
-      encoding <- stri_enc_detect(ecdata)$Encoding
+      encoding <- stringi::stri_enc_detect(ecdata)$Encoding
 
       if (is.null(encoding)) {
 
@@ -150,7 +150,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
   message("\nThe following files failed to download:\n", paste(out$fails, collapse = "\n"))
 
   #return the list of dataframes
-  out <- do.call("dplyr::bind_rows", out$data)
+  out <- dplyr::bind_rows(out$data)
 
   return(out)
 
