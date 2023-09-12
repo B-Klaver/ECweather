@@ -10,9 +10,9 @@ Description: Scrubs and extracts climate data from the
     during the set time period.
 License: MIT License
 URL: https://github.com/B-Klaver/ECweather
-Depends: R >= 4.0.2
+Depends: R (>= 4.0.2)
 Imports: 
-    DT,
+    data.table,
     dplyr,
     here,
     janitor,

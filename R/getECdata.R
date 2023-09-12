@@ -21,14 +21,14 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
   #GENERATE URLS FOR EACH STATION TO PULL DATA
   urls <- stations %>%
-    map(~ {
+    purr::map(~ {
 
-      getECurls(.,
-              year_start,
-              year_end,
-              timeframe = timeframe)
+              getECurls(.,
+                      year_start,
+                      year_end,
+                      timeframe = timeframe)
 
-    })
+            })
 
 
 
@@ -46,7 +46,9 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
   ## set up a progress bar if being verbose
   if (isTRUE(verbose)) {
-    pb <- txtProgressBar(min = 0, max = nfiles, style = 3)
+    pb <- utils::txtProgressBar(min = 0,
+                                max = nfiles,
+                                style = 3)
 
     on.exit(close(pb))
   }
@@ -65,9 +67,9 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
     download.file(url_paths[i], destfile = curfile, quiet = TRUE)
 
     ## Try reading the file
-    ecdata <- try(fread(curfile, encoding = "Latin-1", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)
+    ecdata <- try(data.table::fread(curfile, encoding = "Latin-1", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)
 
-    if (str_detect(colnames(ecdata)[1], "DOCTYPE")) {
+    if (stringr::str_detect(colnames(ecdata)[1], "DOCTYPE")) {
 
       ecdata <- readLines(curfile, warn = FALSE) # read all lines in file
 
@@ -86,7 +88,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
         if (isTRUE(verbose)) { # Update the progress bar
 
-          setTxtProgressBar(pb, value = i)
+          utils::setTxtProgressBar(pb, value = i)
 
         }
 
@@ -99,7 +101,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
       writeLines(ecdata, curfile)          # write the data back to the file
 
       ## try to read the file again, if still an error, bail out
-      ecdata <- try(fread(curfile, encoding = "UTF-8", stringsAsFactors = FALSE), silent = TRUE)
+      ecdata <- try(data.table::fread(curfile, encoding = "UTF-8", stringsAsFactors = FALSE), silent = TRUE)
 
       if (inherits(ecdata, "try-error") | str_detect(colnames(ecdata)[1], "DOCTYPE")) { # yes, still!, handle read problem
 
@@ -115,7 +117,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
         if (isTRUE(verbose)) {
 
-          setTxtProgressBar(pb, value = i) # update progress bar...
+          utils::setTxtProgressBar(pb, value = i) # update progress bar...
 
         }
 
@@ -126,18 +128,19 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
     }
 
     ## If we read the file successfully, add on the station id
-    ecdata <- cbind.data.frame(station_id = rep(sites[i], nrow(ecdata)),
+    ecdata <- cbind.data.frame(station_id = rep(sites[i],
+                                                nrow(ecdata)),
                                ecdata) %>%
-      clean_names() %>%
-      mutate_all(as.character)
+      janitor::clean_names() %>%
+      dplyr::mutate_all(as.character)
 
     #add onto the list
     #out$data[[as.character(sites[i])]] <- ecdata
-    out$data[[as.character(sites[i])]] <- bind_rows(out$data[[as.character(sites[i])]], ecdata)
+    out$data[[as.character(sites[i])]] <- dplyr::bind_rows(out$data[[as.character(sites[i])]], ecdata)
 
     if (isTRUE(verbose)) { # Update the progress bar
 
-      setTxtProgressBar(pb, value = i)
+      utils::setTxtProgressBar(pb, value = i)
 
     }
 
@@ -147,7 +150,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
   message("\nThe following files failed to download:\n", paste(out$fails, collapse = "\n"))
 
   #return the list of dataframes
-  out <- do.call("bind_rows", out$data)
+  out <- do.call("dplyr::bind_rows", out$data)
 
   return(out)
 
