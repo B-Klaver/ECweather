@@ -1,11 +1,20 @@
-Package: test
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Package: ECweather
+Title: Extract Weather Canada data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Braeden", "Klaver", , "braedenklaver@gmail.com", role = c("aut", "cre"))
+Description: Scrubs and extracts climate data from the 
+    Environment Canada website based on set parameters.
+    Downloads data to a local folder and returns a full
+    dataframe of the climate data for all requested stations
+    during the set time period.
+License: MIT License
+URL: https://github.com/B-Klaver/ECweather
+Depends: R >= 4.0.2
+Imports: (package names)
+Published: ?
+Built: R 4.0.5; 2023-09-12
+Language: en-CAN
 Encoding: UTF-8
-LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
