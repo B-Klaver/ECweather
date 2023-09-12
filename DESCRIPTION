@@ -11,7 +11,14 @@ Description: Scrubs and extracts climate data from the
 License: MIT License
 URL: https://github.com/B-Klaver/ECweather
 Depends: R >= 4.0.2
-Imports: (package names)
+Imports: 
+    DT,
+    dplyr,
+    here,
+    janitor,
+    purrr,
+    stringr,
+    utils
 Published: ?
 Built: R 4.0.5; 2023-09-12
 Language: en-CAN
