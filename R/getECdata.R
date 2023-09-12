@@ -5,7 +5,9 @@
 #' for the supplied supplied weather station IDs during the
 #' given period.
 #' @author Braeden Klaver
-#' @usage getECdata(stations, year_start, year_end, folder, time_frame = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE)
+#' @usage getECdata(stations, year_start, year_end, folder,
+#' timeframe = c("hourly", "daily", "monthly"),
+#' verbose = TRUE, delete = TRUE)
 #' @importFrom data.table fread
 #' @importFrom dplyr bind_rows
 #' @importFrom janitor clean_names
@@ -13,7 +15,9 @@
 #' @importFrom utils txtProgressBar
 #' @importFrom stringi stri_enc_detect
 #' @importFrom stringr str_detect
+#' @importFrom utils download.file
 #' @importFrom utils setTxtProgressBar
+#' @param stations Vector of weather station IDs to pull for
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
 #' @param folder Folder path to where you want data saved
@@ -25,7 +29,7 @@
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' @note This function requires the other function available in the package "getECurls"
-#' @examples test <- getECdata(stations = c(52), year_start = 2022, year_end = year(Sys.Date()), folder = "C:/Users/User/Documents/Projects", timeframe = "daily")
+#' @examples df <- getECdata(stations = c(52), year_start = 2022, year_end = 2023, folder = getwd(), timeframe = "daily")
 
 
 getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE) {
@@ -89,7 +93,7 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
     curfile <- fnames[i]
 
     #DOWNLOADING FILE
-    download.file(url_paths[i], destfile = curfile, quiet = TRUE)
+    utils::download.file(url_paths[i], destfile = curfile, quiet = TRUE)
 
     ## Try reading the file
     ecdata <- try(data.table::fread(curfile, encoding = "Latin-1", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)

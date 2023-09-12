@@ -4,9 +4,13 @@
 \alias{getECdata}
 \title{Extract Environment Canada climate data}
 \usage{
-getECdata(stations, year_start, year_end, folder, time_frame = c("hourly", "daily", "monthly"), verbose = TRUE, delete = TRUE)
+getECdata(stations, year_start, year_end, folder,
+timeframe = c("hourly", "daily", "monthly"),
+verbose = TRUE, delete = TRUE)
 }
 \arguments{
+\item{stations}{Vector of weather station IDs to pull for}
+
 \item{year_start}{Starting year for data pull}
 
 \item{year_end}{End year for data pull}
@@ -31,7 +35,7 @@ given period.
 This function requires the other function available in the package "getECurls"
 }
 \examples{
-test <- getECdata(stations = c(52), year_start = 2022, year_end = year(Sys.Date()), folder = "C:/Users/User/Documents/Projects", timeframe = "daily")
+df <- getECdata(stations = c(52), year_start = 2022, year_end = 2023, folder = getwd(), timeframe = "daily")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html

@@ -27,7 +27,7 @@ given period.
 This function is used in the other function available in the package "getECdata"
 }
 \examples{
-test <- getECurls(id = 52, year_start = 2022, year_end 2023, timeframe = "daily")
+list <- getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html

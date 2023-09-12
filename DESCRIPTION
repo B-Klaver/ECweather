@@ -18,6 +18,7 @@ Imports:
     purrr,
     stringi,
     stringr,
+    tidyverse,
     utils
 Language: en-CAN
 Encoding: UTF-8
