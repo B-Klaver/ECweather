@@ -51,7 +51,8 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
 
 
   #GENERATE URLS FOR EACH STATION TO PULL DATA
-  urls <- purrr::map(stations, ~ {
+  urls <- stations %>%
+    purrr::map(~ {
 
               getECurls(.,
                       year_start,
@@ -160,11 +161,9 @@ getECdata <- function(stations, year_start, year_end, folder, timeframe = c("hou
     ## If we read the file successfully, add on the station id
     ecdata <- cbind.data.frame(station_id = rep(sites[i],
                                                 nrow(ecdata)),
-                               ecdata)
-
-    ecdata <- janitor::clean_names(ecdata)
-
-    ecdata <- dplyr::mutate_all(ecdata, as.character)
+                               ecdata) %>%
+      janitor::clean_names() %>%
+      dplyr::mutate_all(as.character)
 
     #add onto the list
     #out$data[[as.character(sites[i])]] <- ecdata

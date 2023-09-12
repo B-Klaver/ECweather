@@ -15,6 +15,7 @@ Imports:
     data.table,
     dplyr,
     janitor,
+    magrittr,
     purrr,
     stringi,
     stringr,
