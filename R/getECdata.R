@@ -268,7 +268,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
 
   #return the failed downloads
   if (length(out$fails) > 0) {
-    message("\nThe following URLs failed to download:\n", paste(out$fails, collapse = "\n"))
+    warning("The following URLs failed to download:\n", paste(out$fails, collapse = "\n"))
   }
 
 
