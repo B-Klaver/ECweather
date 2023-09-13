@@ -19,19 +19,20 @@ getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
 List
 }
 \description{
-Generate the needed URLs
-for the supplied supplied weather station IDs during the
+getECurls() generates the URLs
+for the supplied weather station IDs during the
 given period.
 }
-\note{
-This function is used in the other function available in the package "getECdata"
-}
 \examples{
-url_list <- getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
+getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
+getECurls(id = 52, year_start = 2020, year_end = 2023, timeframe = "monthly")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
+}
+\seealso{
+This function is wrapped in the function ECweather::getECdata()
 }
 \author{
 Braeden Klaver

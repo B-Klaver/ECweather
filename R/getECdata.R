@@ -1,9 +1,10 @@
 #' @title Extract Environment Canada climate data
 #' @name getECdata
 #' @aliases getECdata
-#' @description  Extract the corresponding climate data
-#' for the supplied supplied weather station IDs during the
-#' given period.
+#' @description  getECdata() returns a data frame with
+#'  the corresponding climate data for the supplied supplied
+#'  weather station IDs during the given period. It will also
+#'  save the data to a local folder if download is TRUE.
 #' @author Braeden Klaver
 #' @usage getECdata(stations, year_start, year_end,
 #' timeframe = c("hourly", "daily", "monthly"),
@@ -31,9 +32,11 @@
 #' @rdname getECdata
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
-#' @note This function requires the other function available in the package "getECurls"
-#' @examples df <- getECdata(stations = c(52), year_start = 2022,
+#' @seealso  This function wraps the function ECweather::getECurls()
+#' @examples getECdata(stations = c(52), year_start = 2022,
 #' year_end = 2023, timeframe = "daily", download = TRUE, folder = getwd())
+#' getECdata(stations = c(52, 55, 200), year_start = 2020,
+#' year_end = 2023, timeframe = "monthly", download = FALSE)
 
 
 getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
