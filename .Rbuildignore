@@ -1,3 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^ECweather\.Rproj$
+^doc$
+^Meta$
