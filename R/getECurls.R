@@ -15,6 +15,7 @@
 #' @rdname getECurls
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
+#' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
 #' @seealso  This function is wrapped in the function ECweather::getECdata()
 #' @examples getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
 #' getECurls(id = 52, year_start = 2020, year_end = 2023, timeframe = "monthly")
