@@ -32,7 +32,7 @@ devtools::install_github("B-Klaver/ECweather")
 ## Example
 
 This is a basic example downloads the data to a specified folder, while also creating a
-dataframe in the local environment of all of the weather data
+dataframe in the local environment of all of the weather data:
 
 ```{r example}
 library(ECweather)
@@ -40,8 +40,6 @@ library(ECweather)
 df <- getECdata(stations = c(55, 100),
                 year_start = 2020,
                 year_end = 2023,
-                timeframe = "daily",
-                download = TRUE,
-                folder = getwd())
+                timeframe = "daily")
 
 ```
