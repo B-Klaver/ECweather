@@ -4,7 +4,8 @@
 \alias{getECurls}
 \title{Generate URLs for Environment Canada climate data}
 \usage{
-getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
+getECurls(id, year_start, year_end,
+          timeframe = c("hourly", "daily", "monthly"))
 }
 \arguments{
 \item{id}{A station ID}
@@ -24,8 +25,11 @@ for the supplied weather station IDs during the
 given period.
 }
 \examples{
+#An example of pulling URLs for daily data
 getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
-getECurls(id = 52, year_start = 2020, year_end = 2023, timeframe = "monthly")
+
+#An example of pulling URLs for monthly data
+getECurls(id = 200, year_start = 2020, year_end = 2023, timeframe = "monthly")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html

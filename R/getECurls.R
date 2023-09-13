@@ -5,7 +5,8 @@
 #' for the supplied weather station IDs during the
 #' given period.
 #' @author Braeden Klaver
-#' @usage getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
+#' @usage getECurls(id, year_start, year_end,
+#'           timeframe = c("hourly", "daily", "monthly"))
 #' @param id A station ID
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
@@ -17,8 +18,12 @@
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
 #' @seealso  This function is wrapped in the function ECweather::getECdata()
-#' @examples getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
-#' getECurls(id = 52, year_start = 2020, year_end = 2023, timeframe = "monthly")
+#' @examples
+#' #An example of pulling URLs for daily data
+#' getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
+#'
+#' #An example of pulling URLs for monthly data
+#' getECurls(id = 200, year_start = 2020, year_end = 2023, timeframe = "monthly")
 
 
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){

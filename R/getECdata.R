@@ -7,8 +7,8 @@
 #'  save the data to a local folder if download is TRUE.
 #' @author Braeden Klaver
 #' @usage getECdata(stations, year_start, year_end,
-#' timeframe = c("hourly", "daily", "monthly"),
-#' download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
+#'           timeframe = c("hourly", "daily", "monthly"),
+#'           download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
 #' @importFrom data.table fread
 #' @importFrom dplyr bind_rows
 #' @importFrom janitor clean_names
@@ -34,10 +34,14 @@
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
 #' @seealso  This function wraps the function ECweather::getECurls()
-#' @examples getECdata(stations = c(52), year_start = 2022,
-#' year_end = 2023, timeframe = "daily", download = TRUE, folder = getwd())
-#' getECdata(stations = c(52, 55, 200), year_start = 2020,
-#' year_end = 2023, timeframe = "monthly", download = FALSE)
+#' @examples
+#' #An example that includes saving the data to the local working directory
+#' getECdata(stations = c(52), year_start = 2022, year_end = 2023,
+#'           timeframe = "daily", download = TRUE, folder = getwd())
+#'
+#' #An example that does not include saving the data, instead just pulls the data into the environment
+#' getECdata(stations = c(52, 55, 200), year_start = 2020, year_end = 2023,
+#'           timeframe = "monthly", download = FALSE)
 
 
 getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
