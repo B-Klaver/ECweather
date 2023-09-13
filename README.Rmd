@@ -32,7 +32,7 @@ devtools::install_github("B-Klaver/ECweather")
 ## Example
 
 This is a basic example downloads the data to a specified folder, while also creating a
-dataframe in the local environment of all of the weather data:
+dataframe in the local environment of all of the weather data
 
 ```{r example}
 library(ECweather)
