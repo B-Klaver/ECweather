@@ -13,7 +13,7 @@ getECurls(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly"))
 
 \item{year_end}{End year for data pull}
 
-\item{timeframe}{Timeframe of the data to pull}
+\item{timeframe}{Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")}
 }
 \value{
 List

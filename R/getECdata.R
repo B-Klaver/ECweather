@@ -22,7 +22,7 @@
 #' @param stations Vector of weather station IDs to pull for
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
-#' @param timeframe Timeframe of the data to pull
+#' @param timeframe Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")
 #' @param download Do you want to download the data to a folder
 #' @param folder Folder path to where you want data saved
 #' @param verbose Include progress bar
@@ -41,6 +41,11 @@
 
 getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
                       download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE) {
+
+  if(length(timeframe) > 1){
+    warning("Please select one timeframe at a time. Defaulting to daily....")
+    timeframe <- "daily"
+  }
 
 
   ## check the folder exists and try to create it if not
@@ -116,7 +121,9 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
       utils::download.file(url_paths[i], destfile = curfile, quiet = TRUE)
 
       ## Try reading the file
-      ecdata <- try(data.table::fread(curfile, encoding = "Latin-1", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)
+      ecdata <- try(data.table::fread(curfile, encoding = "Latin-1", stringsAsFactors = FALSE,
+                                      fill = TRUE, showProgress = FALSE),
+                    silent = TRUE)
 
 
       if (stringr::str_detect(colnames(ecdata)[1], "DOCTYPE")) {
@@ -151,7 +158,9 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
         writeLines(ecdata, curfile)          # write the data back to the file
 
         ## try to read the file again, if still an error, bail out
-        ecdata <- try(data.table::fread(curfile, encoding = "UTF-8", stringsAsFactors = FALSE), silent = TRUE)
+        ecdata <- try(data.table::fread(curfile, encoding = "UTF-8", stringsAsFactors = FALSE,
+                                        fill = TRUE, showProgress = FALSE),
+                      silent = TRUE)
 
         if (inherits(ecdata, "try-error") | str_detect(colnames(ecdata)[1], "DOCTYPE")) { # yes, still!, handle read problem
 
@@ -181,7 +190,9 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
 
     if(download == FALSE) {
 
-      ecdata <- try(data.table::fread(url_paths[i], encoding = "Latin-1", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)
+      ecdata <- try(data.table::fread(url_paths[i], encoding = "Latin-1", stringsAsFactors = FALSE,
+                                      fill = TRUE, showProgress = FALSE),
+                    silent = TRUE)
 
       if (stringr::str_detect(colnames(ecdata)[1], "DOCTYPE")) {
 
@@ -206,7 +217,9 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
         }
 
         ## try to read the file again, if still an error, bail out
-        ecdata <- try(data.table::fread(url_paths[i], encoding = "UTF-8", stringsAsFactors = FALSE, fill = TRUE), silent = TRUE)
+        ecdata <- try(data.table::fread(url_paths[i], encoding = "UTF-8", stringsAsFactors = FALSE,
+                                        fill = TRUE, showProgress = FALSE),
+                      silent = TRUE)
 
         if (inherits(ecdata, "try-error") | str_detect(colnames(ecdata)[1], "DOCTYPE")) { # yes, still!, handle read problem
 
@@ -248,7 +261,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
 
   #return the failed downloads
   if(length(out$fails) > 0){
-    message("\nThe following files failed to download:\n", paste(out$fails, collapse = "\n"))
+    message("\nThe following URLs failed to download:\n", paste(out$fails, collapse = "\n"))
   }
 
 

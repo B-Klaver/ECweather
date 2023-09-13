@@ -15,7 +15,7 @@ download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
 
 \item{year_end}{End year for data pull}
 
-\item{timeframe}{Timeframe of the data to pull}
+\item{timeframe}{Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")}
 
 \item{download}{Do you want to download the data to a folder}
 

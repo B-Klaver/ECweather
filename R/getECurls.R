@@ -9,7 +9,7 @@
 #' @param id A station ID
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
-#' @param timeframe Timeframe of the data to pull
+#' @param timeframe Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")
 #' @export getECurls
 #' @return List
 #' @rdname getECurls
@@ -21,6 +21,11 @@
 
 
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
+
+  if(length(timeframe) > 1){
+    warning("Please select one timeframe at a time. \nDefaulting to daily....")
+    timeframe <- "daily"
+  }
 
   #create a vector of years to build URLs
   years <- year_start:year_end
