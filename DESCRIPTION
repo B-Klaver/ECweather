@@ -1,6 +1,6 @@
 Package: ECweather
 Title: Extract Weather Canada data
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person("Braeden", "Klaver", , "braedenklaver@gmail.com", role = c("aut", "cre"))
 Description: Scrubs and extracts climate data from the 
