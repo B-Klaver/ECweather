@@ -73,7 +73,9 @@ getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily",
                  "&submit= Download+Data")
 
   #return a list of URLs for each station ID
-  list(urls = urls, ids = ids, years = years, months = rep(months, length.out = length(urls)))
+  out <- list(urls = urls, ids = ids, years = years, months = rep(months, length.out = length(urls)))
+
+  return(out)
 
 
 }
