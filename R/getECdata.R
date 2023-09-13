@@ -42,11 +42,16 @@
 getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
                       download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE) {
 
-  if(length(timeframe) > 1){
-    warning("Please select one timeframe at a time. Defaulting to daily....")
-    timeframe <- "daily"
+  timeframe <- tolower(timeframe)
+
+  #quickly check the timeframe parameter
+  if (length(timeframe) > 1) {
+    stop("Please select one time frame at a time: hourly, daily, or monthly.")
   }
 
+  if (timeframe != "daily" & timeframe != "hourly" & timeframe != "monthly") {
+    stop("That timeframe is not an option, please select one of: hourly, daily, or monthly.")
+  }
 
   ## check the folder exists and try to create it if not
   if (download == TRUE) {
@@ -71,13 +76,11 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
   #GENERATE URLS FOR EACH STATION TO PULL DATA
   urls <- stations %>%
     purrr::map(~ {
-
               getECurls(.,
                       year_start,
                       year_end,
                       timeframe = timeframe)
-
-            })
+              })
 
 
 
@@ -248,7 +251,6 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
       dplyr::mutate_all(as.character)
 
     #add onto the list
-    #out$data[[as.character(sites[i])]] <- ecdata
     out$data[[as.character(sites[i])]] <- dplyr::bind_rows(out$data[[as.character(sites[i])]], ecdata)
 
     if (isTRUE(verbose)) { # Update the progress bar
@@ -260,7 +262,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
   }
 
   #return the failed downloads
-  if(length(out$fails) > 0){
+  if (length(out$fails) > 0) {
     message("\nThe following URLs failed to download:\n", paste(out$fails, collapse = "\n"))
   }
 

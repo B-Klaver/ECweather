@@ -22,16 +22,17 @@
 
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
 
-  if(length(timeframe) > 1){
-    warning("Please select one timeframe at a time. \nDefaulting to daily....")
-    timeframe <- "daily"
+  timeframe <- tolower(timeframe)
+
+  if (length(timeframe) > 1) {
+    stop("Please select one time frame at a time: hourly, daily, or monthly.")
   }
 
   #create a vector of years to build URLs
   years <- year_start:year_end
 
   #Generate vectors to supply to URL
-  if(timeframe == "hourly") {
+  if (timeframe == "hourly") {
 
     years <-  rep(years, each = 12)
     months <- rep(1:12, times = length(years))
@@ -52,7 +53,9 @@ getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily",
     time_index <- 3
 
   } else {
-    stop ("That timeframe is not an option, please select: hourly, daily, or monthly")
+
+    stop("That timeframe is not an option, please select one of: hourly, daily, or monthly.")
+
   }
 
   #Fill the URLs
