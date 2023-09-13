@@ -68,11 +68,11 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
     if (!dir.exists(folder)) {
       message(paste("Creating the following folder: ", folder))
 
-      create_folder <- try(dir.create(folder))
+      create_folder <- try(dir.create(folder, showWarnings = FALSE))
 
       if (isFALSE(create_folder)) {
-        stop("Failed to create folder '", folder,
-             "'. Check path and permissions.", sep = "")
+        stop(paste0("Failed to create folder '", folder,
+             "'. Check path and permissions."))
       }
     }
   }

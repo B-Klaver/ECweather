@@ -28,6 +28,10 @@
 
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
 
+  if (length(id) > 1) {
+    stop("Please select one weather station ID at a time.")
+  }
+
   timeframe <- tolower(timeframe)
 
   if (length(timeframe) > 1) {
