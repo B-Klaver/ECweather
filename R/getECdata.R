@@ -42,20 +42,23 @@
 getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
                       download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE) {
 
-  if (download == TRUE & is.null(folder)) {
-    stop("Please provide a folder location to write the data to.")
-  }
 
   ## check the folder exists and try to create it if not
-  if (download == TRUE & !dir.exists(folder)) {
+  if (download == TRUE) {
 
-    message(paste("Creating the following folder: ", folder))
+    if (is.null(folder)) {
+      stop("Please provide a folder location to write the data to.")
+    }
 
-    create_folder <- try(dir.create(folder))
+    if (!dir.exists(folder)) {
+      message(paste("Creating the following folder: ", folder))
 
-    if (isFALSE(create_folder)) {
-      stop("Failed to create folder '", folder,
-           "'. Check path and permissions.", sep = "")
+      create_folder <- try(dir.create(folder))
+
+      if (isFALSE(create_folder)) {
+        stop("Failed to create folder '", folder,
+             "'. Check path and permissions.", sep = "")
+      }
     }
   }
 
@@ -244,7 +247,10 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
   }
 
   #return the failed downloads
-  message("\nThe following files failed to download:\n", paste(out$fails, collapse = "\n"))
+  if(length(out$fails) > 0){
+    message("\nThe following files failed to download:\n", paste(out$fails, collapse = "\n"))
+  }
+
 
   #return the list of dataframes
   out <- dplyr::bind_rows(out$data)
