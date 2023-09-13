@@ -11,6 +11,7 @@
 #' @importFrom data.table fread
 #' @importFrom dplyr bind_rows
 #' @importFrom janitor clean_names
+#' @importFrom magrittr %>%
 #' @importFrom purrr map
 #' @importFrom utils txtProgressBar
 #' @importFrom stringi stri_enc_detect

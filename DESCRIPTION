@@ -8,9 +8,9 @@ Description: Scrubs and extracts climate data from the
     Downloads data to a local folder and returns a full
     dataframe of the climate data for all requested stations
     during the set time period.
-License: MIT License
+License: MIT + file LICENSE
 URL: https://github.com/B-Klaver/ECweather
-Depends: R (>= 4.0.2)
+Depends: R (>= 4.0)
 Imports: 
     data.table,
     dplyr,

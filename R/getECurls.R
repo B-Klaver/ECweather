@@ -16,7 +16,7 @@
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' @note This function is used in the other function available in the package "getECdata"
-#' @examples list <- getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
+#' @examples url_list <- getECurls(id = 52, year_start = 2022, year_end = 2023, timeframe = "daily")
 
 
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
