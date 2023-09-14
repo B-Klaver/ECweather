@@ -3,6 +3,7 @@ Title: Extract Weather Canada data
 Version: 1.0.0
 Authors@R: 
     person("Braeden", "Klaver", , "braedenklaver@gmail.com", role = c("aut", "cre"))
+Maintainer: Braeden Klaver <braedenklaver@gmail.com>
 Description: Scrubs and extracts climate data from the 
     Environment Canada website based on set parameters.
     Downloads data to a local folder and returns a full
