@@ -34,6 +34,7 @@
 #' @references https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
+#' @seealso  This function wraps the function ECweather::getECurls()
 #' @examples
 #' #An example that includes saving the data to the local working directory
 #' getECdata(stations = c(52), year_start = 2022, year_end = 2023,
@@ -76,46 +77,11 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
 
   urls <- stations %>%
     purrr::map(~ {
-
-      #create a vector of years to build URLs
-      years <- year_start:year_end
-
-      #Generate vectors to supply to URL
-      if (timeframe == "hourly") {
-
-        years <-  rep(years, each = 12)
-        months <- rep(1:12, times = length(years))
-        ids <- rep(., length(years) * 12)
-        time_index <- 1
-
-      } else if (timeframe == "daily") {
-
-        months <- 1
-        ids <- rep(., length(years))
-        time_index <- 2
-
-      } else if (timeframe == "monthly") {
-
-        years <- year_start
-        months <- 1
-        ids <- .
-        time_index <- 3
-
-      }
-
-      #Fill the URLs
-      urls <- paste0("http://climate.weather.gc.ca/climate_data/bulk_data_e.html?&format=csv&stationID=", .,
-                     "&Year=", years,
-                     "&Month=", months,
-                     "&Day=14",
-                     "&timeframe=", time_index,
-                     "&submit= Download+Data")
-
-      #return a list of URLs for each station ID
-      return(list(urls = urls,
-                  ids = ids))
-
-    })
+      getECurls(.,
+                year_start,
+                year_end,
+                timeframe = timeframe)
+      })
 
   ## Extract the data from the URLs generation
   url_paths <- unlist(lapply(urls, function(url_list) url_list$urls))
