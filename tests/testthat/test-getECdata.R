@@ -45,9 +45,9 @@ testthat::test_that("errors", {
               year_end = 2023,
               timeframe = c("daily"),
               download = TRUE,
-              folder = "C:/Users/Braeden/Documents/Projects/non_writable/test"),
+              folder = "C:/Users/Braeden/Documents/Projects/abcd"),
 
-    "Failed to create folder 'C:/Users/Braeden/Documents/Projects/non_writable/test'. Check path and permissions."
+    "Folder path doesn't exist."
 
   )
 

@@ -70,7 +70,7 @@ df <- getECdata(stations = c(50, 52),
 
 ### Pulling and saving daily data
 
-In addition to pulling data into the local environment, you can also identify a location to save these files
+In addition to pulling data into the local environment, you can also identify a location to save the output
 to use later.
 
 ```{r, eval = FALSE}
@@ -180,7 +180,6 @@ For the function 'getECdata' if you are wanting to download the data to a specif
 an invalid folder path you will get an error such as:
 
 ```
-Creating the following folder:  C:/Users/test
 Error in getECdata(stations = 52, year_start = 2020, year_end = 2023,  : 
-  Failed to create folder 'C:/Users/test'. Check path and permissions.
+  Folder path doesn't exist.
 ```
