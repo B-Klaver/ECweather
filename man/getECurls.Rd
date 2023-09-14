@@ -33,7 +33,6 @@ getECurls(id = 200, year_start = 2020, year_end = 2023, timeframe = "monthly")
 }
 \references{
 \url{https://climate.weather.gc.ca/historical_data/search_historic_data_e.html}
-\url{https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/}
 \url{https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt}
 }
 \seealso{

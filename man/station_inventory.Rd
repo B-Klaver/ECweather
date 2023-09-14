@@ -10,6 +10,9 @@ A data frame with 8797 rows and 19 variables
 \usage{
 data(station_inventory)
 }
+\value{
+Dataframe
+}
 \description{
 station_inventory is a dataframe that includes
 a detailed inventory of the weather stations available from
@@ -67,7 +70,7 @@ at airports the elevation was established by the elevation of the barometer cist
 This list was extracted on 09/13/2023 and may be out of date.
 }
 \references{
-https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
+\url{https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt}
 }
 \author{
 Braeden Klaver
