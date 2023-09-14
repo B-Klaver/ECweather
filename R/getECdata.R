@@ -151,7 +151,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
       if (stringr::str_detect(colnames(ecdata)[1], "DOCTYPE")) {
 
         #read the lines
-        ecdata <- readLines(url_paths[i], warn = FALSE) # read all lines in file
+        ecdata <- readLines(url_paths[i], warn = FALSE)
 
         #check the encoding
         ec_encoding <- stringi::stri_enc_detect(ecdata)$Encoding
