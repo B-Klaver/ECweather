@@ -4,12 +4,13 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  error = TRUE
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
-
 ```
 
 # ECweather
@@ -17,8 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ECweather is to conveniently and efficiently 
-extract weather data from the Environment Canada website. 
+The goal of ECweather is to conveniently and efficiently extract weather data from the Environment Canada website. 
 
 ## Installation
 

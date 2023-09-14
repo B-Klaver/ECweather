@@ -25,7 +25,7 @@ df <- getECdata(stations = c(55, 100),
                 year_start = 2020,
                 year_end = 2023,
                 timeframe = "daily")
-## 
+#> 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
