@@ -1,14 +1,19 @@
 Package: ECweather
-Title: Extract Weather Canada data
+Title: Extract Weather Canada Data
 Version: 1.0.0
 Authors@R: 
     person("Braeden", "Klaver", , "braedenklaver@gmail.com", role = c("aut", "cre"))
+Author: Braeden Klaver [aut, cph]
 Maintainer: Braeden Klaver <braedenklaver@gmail.com>
-Description: Scrubs and extracts climate data from the 
-    Environment Canada website based on set parameters.
-    Downloads data to a local folder and returns a full
-    dataframe of the climate data for all requested stations
-    during the set time period.
+Description: Extracts bulk climate data from the 
+    Environment Canada website for one or more 
+    weather stations available from Environment Canada. 
+    Additionally, you can generate a list of URLs for 
+    weather stations. Currently, the tool available on the 
+    Environment Canada website <https://climate.weather.gc.ca/historical_data/search_historic_data_e.html)>
+    only allows you to manually pull data from a single
+    weather station at a time, which can be cumbersome and
+    is not ideal for use in an automated pipeline.
 License: MIT + file LICENSE
 URL: https://github.com/B-Klaver/ECweather
 Depends: R (>= 4.0)
@@ -21,13 +26,14 @@ Imports:
     stringi,
     stringr,
     utils
-Language: en-CAN
+Language: en-US
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown,
+    spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 LazyData: true
