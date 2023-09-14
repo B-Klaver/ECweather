@@ -10,6 +10,7 @@
 #'           timeframe = c("hourly", "daily", "monthly"),
 #'           download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
 #' @importFrom data.table fread
+#' @importFrom data.table fwrite
 #' @importFrom dplyr bind_rows
 #' @importFrom janitor clean_names
 #' @importFrom magrittr %>%
@@ -231,7 +232,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
   return(out)
 
   #download data if selected
-  if(download = TRUE){
+  if(download == TRUE){
     fwrite(out, file.path(folder, paste0("ECdata_", timeframe, "_", year_start, "_", year_end, ".csv")))
   }
 
