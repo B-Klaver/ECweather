@@ -3,6 +3,7 @@
 export(getECdata)
 export(getECurls)
 importFrom(data.table,fread)
+importFrom(data.table,fwrite)
 importFrom(dplyr,bind_rows)
 importFrom(janitor,clean_names)
 importFrom(magrittr,"%>%")
