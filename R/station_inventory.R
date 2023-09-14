@@ -52,11 +52,12 @@
 #'   \item MLY Last Year: The year of latest monthly observation.
 #' }
 #' @author Braeden Klaver
+#' @return Dataframe
 #' @docType data
 #' @usage data(station_inventory)
 #' @format A data frame with 8797 rows and 19 variables
 #' @rdname station_inventory
 #' @references
-#' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
+#' <https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt>
 #' @note This list was extracted on 09/13/2023 and may be out of date.
 NULL
