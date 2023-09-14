@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-The goal of ECweather is to conveniently and efficiently download and extract weather data from the Environment Canada website.
+The goal of ECweather is to conveniently and efficiently extract weather data from the Environment Canada website.
 
 ## Installation
 
@@ -25,7 +25,7 @@ df <- getECdata(stations = c(55, 100),
                 year_start = 2020,
                 year_end = 2023,
                 timeframe = "daily")
-#> 
+## 
   |                                                                            
   |                                                                      |   0%
   |                                                                            

@@ -6,7 +6,7 @@
 \usage{
 getECdata(stations, year_start, year_end,
           timeframe = c("hourly", "daily", "monthly"),
-          download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
+          verbose = TRUE)
 }
 \arguments{
 \item{stations}{Vector of weather station IDs to pull for}
@@ -17,13 +17,7 @@ getECdata(stations, year_start, year_end,
 
 \item{timeframe}{Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")}
 
-\item{download}{Do you want to download the data to a folder}
-
-\item{folder}{Folder path to where you want data saved}
-
 \item{verbose}{Include progress bar}
-
-\item{delete}{Delete files that failed to download or were corrupted}
 }
 \value{
 Dataframe
@@ -31,17 +25,12 @@ Dataframe
 \description{
 getECdata() returns a data frame with
 the corresponding climate data for the supplied supplied
-weather station IDs during the given period. It will also
-save the data to a local folder if download is TRUE.
+weather station IDs during the given period.
 }
 \examples{
-#An example that includes saving the data to the local working directory
-getECdata(stations = c(52), year_start = 2022, year_end = 2023,
-          timeframe = "daily", download = TRUE, folder = getwd())
-
-#An example that does not include saving the data, instead just pulls the data into the environment
+#An example that  pulls the data into the environment
 getECdata(stations = c(52, 55, 200), year_start = 2020, year_end = 2023,
-          timeframe = "monthly", download = FALSE)
+          timeframe = "monthly")
 }
 \references{
 https://climate.weather.gc.ca/historical_data/search_historic_data_e.html

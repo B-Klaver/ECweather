@@ -55,6 +55,16 @@ data(ECweather::station_inventory)
 Once you have identified your required weather station IDs, the time period you are looking for,
 and made sure the weather station collects the data you need, you can set up your data call accordingly.
 
+### Checking the weather station inventory
+
+Call the Environment Canada inventory of weather stations.
+
+```{r, eval = FALSE}
+
+df <- data(station_inventory)
+
+```
+
 ### Pulling daily data
 
 Here we will pull daily data for stations 50 and 52, between 2020 and 2023.
@@ -68,22 +78,6 @@ df <- getECdata(stations = c(50, 52),
 
 ```
 
-### Pulling and saving daily data
-
-In addition to pulling data into the local environment, you can also identify a location to save the output
-to use later.
-
-```{r, eval = FALSE}
-
-df <- getECdata(stations = c(50, 52),
-                start_year = 2020,
-                end_year = 2023,
-                timeframe = "daily",
-                download = TRUE,
-                folder = "path/to/folder")
-
-```
-
 ### Pulling hourly data
 
 You can also pull hourly and monthly data.
@@ -94,23 +88,6 @@ df <- getECdata(stations = c(50, 52),
                 start_year = 2020,
                 end_year = 2023,
                 timeframe = "hourly")
-
-```
-
-
-### Pulling and saving data
-
-In addition to pulling data into the local environment, you can also identify a location to save these files
-to use later.
-
-```{r, eval = FALSE}
-
-df <- getECdata(stations = c(50, 52),
-                start_year = 2020,
-                end_year = 2023,
-                timeframe = "daily",
-                download = TRUE,
-                folder = "path/to/folder")
 
 ```
 
@@ -164,22 +141,3 @@ Error in getECurls(id = c(1, 3, 4), year_start = 2020, year_end = 2023,  :
   Please select one weather station ID at a time.
 ```
 
-### Folder path not provided
-
-For the function 'getECdata' if you are wanting to download the data to a specified folder, but have forgotten
-to input a folder you will get an error such as:
-
-```
-Error in getECdata(stations = 52, year_start = 2020, year_end = 2023,  : 
-  Please provide a folder location to write the data to.
-```
-
-### Invalid folder path
-
-For the function 'getECdata' if you are wanting to download the data to a specified folder, but have input
-an invalid folder path you will get an error such as:
-
-```
-Error in getECdata(stations = 52, year_start = 2020, year_end = 2023,  : 
-  Folder path doesn't exist.
-```

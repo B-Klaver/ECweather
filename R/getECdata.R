@@ -3,12 +3,11 @@
 #' @aliases getECdata
 #' @description  getECdata() returns a data frame with
 #'  the corresponding climate data for the supplied supplied
-#'  weather station IDs during the given period. It will also
-#'  save the data to a local folder if download is TRUE.
+#'  weather station IDs during the given period.
 #' @author Braeden Klaver
 #' @usage getECdata(stations, year_start, year_end,
 #'           timeframe = c("hourly", "daily", "monthly"),
-#'           download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE)
+#'           verbose = TRUE)
 #' @importFrom data.table fread
 #' @importFrom data.table fwrite
 #' @importFrom dplyr bind_rows
@@ -24,10 +23,7 @@
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
 #' @param timeframe Timeframe of the data to pull, select one of c("hourly", "daily", "monthly")
-#' @param download Do you want to download the data to a folder
-#' @param folder Folder path to where you want data saved
 #' @param verbose Include progress bar
-#' @param delete Delete files that failed to download or were corrupted
 #' @export getECdata
 #' @return Dataframe
 #' @rdname getECdata
@@ -36,17 +32,14 @@
 #' https://collaboration.cmc.ec.gc.ca/cmc/climate/Get_More_Data_Plus_de_donnees/Station_Inventory_ID_Disclaimer_Metadata_EN.txt
 #' @seealso  This function wraps the function ECweather::getECurls()
 #' @examples
-#' #An example that includes saving the data to the local working directory
-#' getECdata(stations = c(52), year_start = 2022, year_end = 2023,
-#'           timeframe = "daily", download = TRUE, folder = getwd())
-#'
-#' #An example that does not include saving the data, instead just pulls the data into the environment
+#' #An example that  pulls the data into the environment
 #' getECdata(stations = c(52, 55, 200), year_start = 2020, year_end = 2023,
-#'           timeframe = "monthly", download = FALSE)
+#'           timeframe = "monthly")
 
 
-getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "daily", "monthly"),
-                      download = FALSE, folder = NULL, verbose = TRUE, delete = TRUE) {
+getECdata <- function(stations, year_start, year_end,
+                      timeframe = c("hourly", "daily", "monthly"),
+                      verbose = TRUE) {
 
   #set in lower case
   timeframe <- tolower(timeframe)
@@ -58,18 +51,6 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
 
   if (timeframe != "daily" & timeframe != "hourly" & timeframe != "monthly") {
     stop("That timeframe is not an option, please select one of: hourly, daily, or monthly.")
-  }
-
-  ## check the folder exists and try to create it if not
-  if (download == TRUE) {
-
-    if (is.null(folder)) {
-      stop("Please provide a folder location to write the data to.")
-    }
-
-    if (!dir.exists(folder)) {
-      stop("Folder path doesn't exist.")
-    }
   }
 
 
@@ -196,11 +177,6 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
   out <- dplyr::bind_rows(out$data)
 
   return(out)
-
-  #download data if selected
-  if(download == TRUE){
-    fwrite(out, file.path(folder, paste0("ECdata_", timeframe, "_", year_start, "_", year_end, ".csv")))
-  }
 
 }
 
