@@ -124,7 +124,7 @@ getECdata <- function(stations, year_start, year_end, timeframe = c("hourly", "d
         ec_encoding <- stringi::stri_enc_detect(ecdata)$Encoding
 
         #If encoding is null it tells us the data failed to download
-        if (is.null(encoding)) {
+        if (is.null(ec_encoding)) {
 
           #label as a failed url
           out$fails <- append(out$fails, url_paths[i])
