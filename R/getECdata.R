@@ -95,7 +95,7 @@ getECdata <- function(stations, year_start, year_end,
                   silent = TRUE)
 
       #If the URL doesn't hold data it will give a strange first column
-      if (stringr::str_detect(colnames(ecdata)[1], "DOCTYPE")) {
+      if (inherits(ecdata, "try-error") | length(ecdata) < 2) {
 
         #read the lines
         ecdata <- readLines(url_paths[i], warn = FALSE)
@@ -131,7 +131,7 @@ getECdata <- function(stations, year_start, year_end,
                       silent = TRUE)
 
         #If still no luck then throw into the failed pile and continue
-        if (inherits(ecdata, "try-error") | str_detect(colnames(ecdata)[1], "DOCTYPE")) {
+        if (inherits(ecdata, "try-error") | length(ecdata) < 2) {
 
           out$fails <- append(out$fails, url_paths[i])
 
