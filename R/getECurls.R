@@ -25,11 +25,6 @@
 #' getECurls(id = 200, year_start = 2020, year_end = 2023, timeframe = "monthly")
 
 
-id = 155
-year_start = 2020
-year_end = 2023
-timeframe = "hourly"
-
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
 
   if (length(id) > 1) {
