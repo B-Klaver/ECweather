@@ -87,11 +87,10 @@ getECdata <- function(stations, year_start, year_end,
 
 
     #try to read the data
-    ecdata <- try(data.table::fread(url_paths[i],
+    ecdata <- try(utils::read.csv(url_paths[i],
                                     encoding = "Latin-1",
                                     stringsAsFactors = FALSE,
-                                    fill = TRUE,
-                                    showProgress = FALSE),
+                                    fill = TRUE),
                   silent = TRUE)
 
       #If the URL doesn't hold data it will give a strange first column
@@ -123,11 +122,10 @@ getECdata <- function(stations, year_start, year_end,
         }
 
         ## try to read the file again using the encoding found above
-        ecdata <- try(data.table::fread(url_paths[i],
+        ecdata <- try(utils::read.csv(url_paths[i],
                                         encoding = ec_encoding,
                                         stringsAsFactors = FALSE,
-                                        fill = TRUE,
-                                        showProgress = FALSE),
+                                        fill = TRUE),
                       silent = TRUE)
 
         #If still no luck then throw into the failed pile and continue
@@ -152,7 +150,7 @@ getECdata <- function(stations, year_start, year_end,
     ## If we read the file successfully, add on the station id and do clean up
     ecdata <- cbind.data.frame(station_id = rep(sites[i], nrow(ecdata)),
                                ecdata) %>%
-      janitor::clean_names() %>%
+      #janitor::clean_names() %>%
       dplyr::mutate_all(as.character)
 
     #add the data onto the list
