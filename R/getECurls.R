@@ -25,6 +25,11 @@
 #' getECurls(id = 200, year_start = 2020, year_end = 2023, timeframe = "monthly")
 
 
+id = 155
+year_start = 2020
+year_end = 2023
+timeframe = "hourly"
+
 getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily", "monthly")){
 
   if (length(id) > 1) {
@@ -38,20 +43,20 @@ getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily",
   }
 
   #create a vector of years to build URLs
-  years <- year_start:year_end
+  years_index <- year_start:year_end
 
   #Generate vectors to supply to URL
   if (timeframe == "hourly") {
 
-    years <-  rep(years, each = 12)
-    months <- rep(1:12, times = length(years))
-    ids <- rep(id, length(years) * 12)
+    years <-  rep(years_index, each = 12)
+    months <- rep(1:12, times = length(years_index))
+    ids <- rep(id, length(years_index) * 12)
     time_index <- 1
 
   } else if (timeframe == "daily") {
 
     months <- 1
-    ids <- rep(id, length(years))
+    ids <- rep(id, length(years_index))
     time_index <- 2
 
   } else if (timeframe == "monthly") {
