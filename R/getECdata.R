@@ -150,7 +150,7 @@ getECdata <- function(stations, year_start, year_end,
     ## If we read the file successfully, add on the station id and do clean up
     ecdata <- cbind.data.frame(station_id = rep(sites[i], nrow(ecdata)),
                                ecdata) %>%
-      #janitor::clean_names() %>%
+      janitor::clean_names() %>%
       dplyr::mutate_all(as.character)
 
     #add the data onto the list

@@ -1,6 +1,6 @@
 Package: ECweather
 Title: Extract Weather Canada Data
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("Braeden", "Klaver", , "braedenklaver@gmail.com", role = c("aut", "cre"))
 Author: Braeden Klaver [aut, cph]
