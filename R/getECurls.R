@@ -52,6 +52,7 @@ getECurls <- function(id, year_start, year_end, timeframe = c("hourly", "daily",
 
     months <- 1
     ids <- rep(id, length(years_index))
+    years <- years_index
     time_index <- 2
 
   } else if (timeframe == "monthly") {

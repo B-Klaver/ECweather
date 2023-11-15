@@ -99,9 +99,9 @@ list of URLs. Note, this will only generate URLs for one station at a time.
 
 ```{r, eval = FALSE}
 
-df <- getECurls(stations = 50,
-                start_year = 2020,
-                end_year = 2023,
+df <- getECurls(id = 50,
+                year_start = 2020,
+                year_end = 2023,
                 timeframe = "daily")
 
 ```
