@@ -8,17 +8,8 @@
 #' @usage getECdata(stations, year_start, year_end,
 #'           timeframe = c("hourly", "daily", "monthly"),
 #'           verbose = TRUE)
-#' @importFrom data.table fread
-#' @importFrom data.table fwrite
-#' @importFrom dplyr bind_rows
 #' @importFrom janitor clean_names
-#' @importFrom magrittr %>%
-#' @importFrom purrr map
-#' @importFrom utils txtProgressBar
 #' @importFrom stringi stri_enc_detect
-#' @importFrom stringr str_detect
-#' @importFrom utils download.file
-#' @importFrom utils setTxtProgressBar
 #' @param stations Vector of weather station IDs to pull for
 #' @param year_start Starting year for data pull
 #' @param year_end End year for data pull
@@ -55,13 +46,13 @@ getECdata <- function(stations, year_start, year_end,
 
   #GENERATE URLS FOR EACH STATION TO PULL DATA
 
-  urls <- stations %>%
-    purrr::map(~ {
-      getECurls(.,
-                year_start,
-                year_end,
-                timeframe = timeframe)
-      })
+  urls <- lapply(stations, function(station) {
+    getECurls(station,
+              year_start,
+              year_end,
+              timeframe = timeframe)
+  })
+
 
   ## Extract the data from the URLs generation
   url_paths <- unlist(lapply(urls, function(url_list) url_list$urls))
@@ -72,8 +63,8 @@ getECdata <- function(stations, year_start, year_end,
   ## set up a progress bar if being verbose
   if (isTRUE(verbose)) {
     progress <- utils::txtProgressBar(min = 0,
-                                max = n_paths,
-                                style = 3)
+                                      max = n_paths,
+                                      style = 3)
 
     on.exit(close(progress))
   }
@@ -88,9 +79,9 @@ getECdata <- function(stations, year_start, year_end,
 
     #try to read the data
     ecdata <- try(utils::read.csv(url_paths[i],
-                                    encoding = "Latin-1",
-                                    stringsAsFactors = FALSE,
-                                    fill = TRUE),
+                                  encoding = "Latin-1",
+                                  stringsAsFactors = FALSE,
+                                  fill = TRUE),
                   silent = TRUE)
 
       #If the URL doesn't hold data it will give a strange first column
@@ -123,9 +114,9 @@ getECdata <- function(stations, year_start, year_end,
 
         ## try to read the file again using the encoding found above
         ecdata <- try(utils::read.csv(url_paths[i],
-                                        encoding = ec_encoding,
-                                        stringsAsFactors = FALSE,
-                                        fill = TRUE),
+                                      encoding = ec_encoding,
+                                      stringsAsFactors = FALSE,
+                                      fill = TRUE),
                       silent = TRUE)
 
         #If still no luck then throw into the failed pile and continue
@@ -149,12 +140,14 @@ getECdata <- function(stations, year_start, year_end,
 
     ## If we read the file successfully, add on the station id and do clean up
     ecdata <- cbind.data.frame(station_id = rep(sites[i], nrow(ecdata)),
-                               ecdata) %>%
-      janitor::clean_names() %>%
-      dplyr::mutate_all(as.character)
+                               ecdata)
+
+    ecdata <- janitor::clean_names(ecdata)
+
+    ecdata <- as.data.frame(lapply(ecdata, as.character))
 
     #add the data onto the list
-    out$data[[as.character(sites[i])]] <- dplyr::bind_rows(out$data[[as.character(sites[i])]], ecdata)
+    out$data[[as.character(sites[i])]] <- rbind(out$data[[as.character(sites[i])]], ecdata)
 
     # Update the progress bar
     if (isTRUE(verbose)) {
@@ -171,7 +164,7 @@ getECdata <- function(stations, year_start, year_end,
   }
 
   #return the list of dataframes
-  out <- dplyr::bind_rows(out$data)
+  out <- rbind(out$data)
 
   return(out)
 

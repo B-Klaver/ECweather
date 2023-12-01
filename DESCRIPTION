@@ -18,14 +18,8 @@ License: MIT + file LICENSE
 URL: https://github.com/B-Klaver/ECweather
 Depends: R (>= 4.0)
 Imports: 
-    data.table,
-    dplyr,
     janitor,
-    magrittr,
-    purrr,
-    stringi,
-    stringr,
-    utils
+    stringi
 Language: en-US
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
