@@ -164,7 +164,7 @@ getECdata <- function(stations, year_start, year_end,
   }
 
   #return the list of dataframes
-  out <- rbind(out$data)
+  out <- do.call(rbind, out$data)
 
   return(out)
 
